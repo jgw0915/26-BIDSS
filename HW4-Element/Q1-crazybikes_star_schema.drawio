@@ -1,0 +1,59 @@
+<mxfile host="app.diagrams.net" modified="2026-05-05T00:00:00.000Z" agent="ChatGPT" version="24.7.17" type="device">
+  <diagram name="CrazyBikes Star Schema" id="crazybikes-star-schema">
+    <mxGraphModel dx="1422" dy="794" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="title" value="CrazyBikes Star Schema for Sales / Shipping Analysis" style="text;html=1;strokeColor=none;fillColor=none;fontSize=22;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="360" y="20" width="680" height="40" as="geometry" />
+        </mxCell>
+
+        <mxCell id="fact" value="&lt;b&gt;Fact_Sales_Shipping&lt;/b&gt;&lt;br&gt;-----------------------------&lt;br&gt;product_key (FK)&lt;br&gt;customer_key (FK)&lt;br&gt;order_date_key (FK)&lt;br&gt;ship_date_key (FK)&lt;br&gt;country_key (FK)&lt;br&gt;purchase_order_number (DD)&lt;br&gt;&lt;br&gt;&lt;b&gt;Measures&lt;/b&gt;&lt;br&gt;quantity_shipping&lt;br&gt;sales" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;align=left;spacingLeft=14;verticalAlign=top;spacingTop=10;" vertex="1" parent="1">
+          <mxGeometry x="550" y="330" width="300" height="250" as="geometry" />
+        </mxCell>
+
+        <mxCell id="dim_product" value="&lt;b&gt;Dim_Product&lt;/b&gt;&lt;br&gt;-----------------------------&lt;br&gt;product_key (PK)&lt;br&gt;product_number&lt;br&gt;product_class&lt;br&gt;&lt;br&gt;&lt;i&gt;Hierarchy:&lt;/i&gt;&lt;br&gt;Product Class → Product Number" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=14;align=left;spacingLeft=14;verticalAlign=top;spacingTop=10;" vertex="1" parent="1">
+          <mxGeometry x="90" y="120" width="300" height="180" as="geometry" />
+        </mxCell>
+
+        <mxCell id="dim_customer" value="&lt;b&gt;Dim_Customer&lt;/b&gt;&lt;br&gt;-----------------------------&lt;br&gt;customer_key (PK)&lt;br&gt;customer_number&lt;br&gt;&lt;br&gt;&lt;i&gt;Hierarchy:&lt;/i&gt;&lt;br&gt;Customer Number" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=14;align=left;spacingLeft=14;verticalAlign=top;spacingTop=10;" vertex="1" parent="1">
+          <mxGeometry x="1010" y="120" width="300" height="160" as="geometry" />
+        </mxCell>
+
+        <mxCell id="dim_order_date" value="&lt;b&gt;Dim_Order_Date&lt;/b&gt;&lt;br&gt;-----------------------------&lt;br&gt;order_date_key (PK)&lt;br&gt;order_date&lt;br&gt;order_month&lt;br&gt;order_quarter&lt;br&gt;order_year&lt;br&gt;&lt;br&gt;&lt;i&gt;Hierarchy:&lt;/i&gt;&lt;br&gt;Year → Quarter → Month → Date" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=14;align=left;spacingLeft=14;verticalAlign=top;spacingTop=10;" vertex="1" parent="1">
+          <mxGeometry x="90" y="620" width="300" height="210" as="geometry" />
+        </mxCell>
+
+        <mxCell id="dim_ship_date" value="&lt;b&gt;Dim_Ship_Date&lt;/b&gt;&lt;br&gt;-----------------------------&lt;br&gt;ship_date_key (PK)&lt;br&gt;ship_month&lt;br&gt;ship_quarter&lt;br&gt;ship_year&lt;br&gt;&lt;br&gt;&lt;i&gt;Hierarchy:&lt;/i&gt;&lt;br&gt;Year → Quarter → Month" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=14;align=left;spacingLeft=14;verticalAlign=top;spacingTop=10;" vertex="1" parent="1">
+          <mxGeometry x="1010" y="620" width="300" height="190" as="geometry" />
+        </mxCell>
+
+        <mxCell id="dim_country" value="&lt;b&gt;Dim_Country&lt;/b&gt;&lt;br&gt;-----------------------------&lt;br&gt;country_key (PK)&lt;br&gt;country&lt;br&gt;&lt;br&gt;&lt;i&gt;Hierarchy:&lt;/i&gt;&lt;br&gt;Country" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=14;align=left;spacingLeft=14;verticalAlign=top;spacingTop=10;" vertex="1" parent="1">
+          <mxGeometry x="550" y="90" width="300" height="160" as="geometry" />
+        </mxCell>
+
+        <mxCell id="note" value="DD = Degenerate Dimension. Purchase Order # is stored in the fact table because it identifies transactions but does not need a separate dimension table." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=13;align=left;spacingLeft=10;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="475" y="720" width="450" height="70" as="geometry" />
+        </mxCell>
+
+        <mxCell id="edge_product" value="product_key" style="endArrow=block;html=1;rounded=0;strokeWidth=2;fontSize=12;" edge="1" parent="1" source="fact" target="dim_product">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_customer" value="customer_key" style="endArrow=block;html=1;rounded=0;strokeWidth=2;fontSize=12;" edge="1" parent="1" source="fact" target="dim_customer">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_order" value="order_date_key" style="endArrow=block;html=1;rounded=0;strokeWidth=2;fontSize=12;" edge="1" parent="1" source="fact" target="dim_order_date">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_ship" value="ship_date_key" style="endArrow=block;html=1;rounded=0;strokeWidth=2;fontSize=12;" edge="1" parent="1" source="fact" target="dim_ship_date">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_country" value="country_key" style="endArrow=block;html=1;rounded=0;strokeWidth=2;fontSize=12;" edge="1" parent="1" source="fact" target="dim_country">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
